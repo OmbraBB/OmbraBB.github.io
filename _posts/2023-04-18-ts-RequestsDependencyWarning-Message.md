@@ -3,11 +3,13 @@ title: T/S_RequestsDependencyWarning Message
 author: B
 date: 2023-04-18 14:11:00 +0900
 categories: [TroubleShoot]
+image:
+    path: /commons/20230418/01.png
 ---
 
 오랜만에 리눅스 컨테이너에 솔루션 서버 환경을 설치하는 도중에 아래와 같은 에러가 났다.
 
-![Desktop View](/commons/20230418/01.png)
+![Desktop View](/commons/20230418/01.png){: width="100%"}
 
 패키지 설치 시, requests와 chardet 라이브러리를 설치하는데 둘 다 최신버전으로 자동 설치되어 생긴 두 라이브러리 간의 호환성 문제이다.
 
