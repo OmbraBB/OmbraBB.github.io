@@ -29,7 +29,7 @@ import matplotlib.pyplot as plt
 ## 2. 데이터 클리닝
 - 데이터 클리닝이란, 데이터 집합 내에서 오류가 있거나, 손상되었거나, 형식에 문제가 있거나, 중복되었거나, 어떤 형태로든 불완전한 데이터를 수정하거나 제거하는 프로세스이다. [^fn-05]
 
-## 2-1. 데이터 확인
+### 2-1. 데이터 확인
 ```python
 data = pd.read_csv('train.csv')
 print(data.info())
@@ -38,7 +38,7 @@ print(data.info())
 
 ![Desktop View](/commons/titanic01/02.png)
 
-## 2-2. question mark 처리
+### 2-2. question mark 처리
 - 지금은 따로 정제가 필요 없지만, 이전 학습 데이터 파일 내에서는 데이터를 사용할 수 없는 셀을 식별하기 위해 물음표("?")가 사용되었다.
 - Pandas는 이 값을 DataFrame으로 읽을 수 있지만 age와 같은 열의 경우 데이터 유형이 지금과 깉이 float64가 아닌 object로 설정되어 그래프 작성에 문제가 되었다.
 - 이 경우에는 아래와 같이 물음표를 pandas가 이해할 수 있는 numpy NaN값으로 바꾸며 값을 바꾼 후 열의 데이터 유형을 변경해야한다.
@@ -51,7 +51,7 @@ data.replace('?', np.nan, inplace = True)
 data = data.astype({"Age": np.float64, "Fare": np.float64})
 ```
 
-## 2-3. 결측치 확인
+### 2-3. 결측치 확인
 ```python
 data_null_ratio = data.isnull().sum() / len(data) * 100
 ```
@@ -62,7 +62,7 @@ data_null_ratio = data.isnull().sum() / len(data) * 100
 - 현재 결측치가 확인되는 컬럼은 Age, Cabin, Embarked이다.
 - Cabin 컬럼과 같은 경우에는 사고 발생 시 선박의 대략적인 위치와 SES(Socio-Econobic Status)에 대한 feature가 가능하지만 대부분의 값이 결측값임을 확인할 수 있으며, NaN값을 대체할 수 있는 데이터가 존재하지 않으므로 큰 가치가 없는 이상 제외한다. (SES와 같은 경우에는 Pclass 컬럼으로 대체가능하다.)
 
-## 2-4. Age 결측치 처리
+### 2-4. Age 결측치 처리
 - Age 컬럼의 경우에는 '그룹 별 평균값으로 결측치 대체'를 진행하며 두 가지의 방법이 있다.
 - 첫번째 방법으로는 아래는 이미 데이터들이 분류가 되엉ㅆ는 컬럼들과 그룹화하여 평균값을 도출하는 방법이다.
 
@@ -105,21 +105,21 @@ data.groupby('Title')['Age'].mean().round()
 - 호칭은 Mrs, Mr, Miss, Master, Others 다섯가지로 정리하며 정리된 호칭 별로 반올림된 평균 나이를 확인하고 출력되는 평균값을 Age 컬럼의 결측치들과 대체한다.
 
 ```python
-data.loc[(data.Age.isnull()) & (data.Initial=='Master'), 'Age'] = 5
-data.loc[(data.Age.isnull()) & (data.Initial=='Miss'), 'Age'] = 22
-data.loc[(data.Age.isnull()) & (data.Initial=='Mr'), 'Age'] = 32
-data.loc[(data.Age.isnull()) & (data.Initial=='Mrs'), 'Age'] = 36
-data.loc[(data.Age.isnull()) & (data.Initial=='Other'), 'Age'] = 46
+data.loc[(data.Age.isnull()) & (data.Title=='Master'), 'Age'] = 5
+data.loc[(data.Age.isnull()) & (data.Title=='Miss'), 'Age'] = 22
+data.loc[(data.Age.isnull()) & (data.Title=='Mr'), 'Age'] = 32
+data.loc[(data.Age.isnull()) & (data.Title=='Mrs'), 'Age'] = 36
+data.loc[(data.Age.isnull()) & (data.Title=='Others'), 'Age'] = 46
 ```
 
 - 본문에서는 두번째 방법을 사용하여 Age 컬럼의 결측치를 대체하고 각 호칭별 생존자를 예측했을 경우 아래와 같은 결과를 도출한다.
 
 ```python
-data[['Initial', 'Survived']].groupby(['Initial'], as_index=False).mean().sort_values(by='Survived', ascending=False)
+data[['Title', 'Survived']].groupby(['Title'], as_index=False).mean().sort_values(by='Survived', ascending=False)
 ```
 ![Desktop View](/commons/titanic01/08.png){: width="202" height="215"}
 
-## 2-5. Embarked 결측치 처리
+### 2-5. Embarked 결측치 처리
 - Embarked의 결측치는 2개 이므로 최빈값으로 대체한다.
 
 ```python
@@ -138,6 +138,15 @@ plt.show()
 ```python
 data['Embarked'].fillna('S', inplace=True)
 ```
+
+## * 진행 과정 메모 사항
+- 초기 진행의 경우 python 환경에서는 작동을 하였으나, py파일이 아닌 jupyter notebook 사용.
+- py 파일에서 동작할 경우 tkinter 내 포함된 lib 에러 발생 확인
+- 이에 py 환경 변경을 위한 python 3.11 패키지 재설치 (+tk 포함된 버전) 후 환경 변수에 설정되어 있는 기존 python 3.6에서 3.11 버전으로 재설정
+- 그 후 figsize에서 에러 발생 확인 → 단순 오타로 인한 오류 발생으로 확인
+
+## * 다음 포스트 내용
+- 본격적인 학습을 진행하기 앞서 모델의 정확도를 높이기 위한 Feature Engineering과 데이터 시각화 진행
 
 ## 참고 URL
 [^fn-01]: <https://numpy.org/>
