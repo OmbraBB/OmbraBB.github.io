@@ -235,7 +235,7 @@ result.head(10)
 
 - 예측 결과를 result에 담아 결과를 확인한다.
 
-![Desktop View](/commons/titanic02/06.png)
+![Desktop View](/commons/titanic02/06.JPG)
 
 
 
