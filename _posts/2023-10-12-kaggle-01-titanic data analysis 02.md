@@ -45,7 +45,8 @@ data['fare_range'] = pd.qcut(data['Fare'], 4)
 data.groupby(['fare_range'])['Survived'].mean().to_frame().style.background_gradient(cmap='coolwarm')
 ```
 
-![Desktop View](/commons/titanic02/02.png)
+<!-- ![Desktop View](/commons/titanic02/02.png) -->
+![Desktop View](/commons/titanic02/02.JPG)
 
 - 위와 같이 나누어진 fare_range로 fare_bin 컬럼을 생성한다.
 
