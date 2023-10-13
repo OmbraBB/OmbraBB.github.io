@@ -210,6 +210,32 @@ round(np.mean(score)*100, 2)
 
 - 참고한 사이트는 SVM이 가장 높게 나왔으나, 나의 결과 기준으로는 현재 K-NN의 정확도가 높게 나왔으므로, 이를 테스트 모델로 사용한다.
 
+## 7. 데이터 테스트
+
+```python
+test_model = KNeighborsClassifier(n_neighbors=13)
+test_model.fit(data, learning)
+
+testing = test.drop('PassengerId', axis = 1).copy()
+prediction = test_model.predict(testing)
+```
+
+test 데이터도 train 데이터와 마찬가지로 데이터 전처리 완료 후, 테스트를 진행한다.
+> 위에서 임의로 추가하였던 컬럼 'Title', 'age_bin', 'family', 'fare_bin'가 test 데이터에도 동일하게 존재해야한다. {: .prompt-tip}
+
+```python
+result = pd.DataFrame({
+    "PassengerId" : test["PassengerId"],
+    "Survived": prediction
+})
+
+result.head(10)
+```
+
+- 예측 결과를 result에 담아 결과를 확인한다.
+
+![Desktop View](/commons/titanic02/06.png)
+
 
 
 
