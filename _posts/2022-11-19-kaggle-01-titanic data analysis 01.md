@@ -7,7 +7,7 @@ image:
     path: /commons/titanic01/01.png
 ---
 
-![Desktop View](/commons/titanic01/01.png){: width="100%"}
+![Desktop View](/commons/titanic01/01.png)
 - 사용 환경 : Python 3.11
 - 사용 툴 : VS Code
 
