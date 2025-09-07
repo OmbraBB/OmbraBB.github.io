@@ -150,7 +150,7 @@ data['Embarked'].fillna('S', inplace=True)
 
 ## 참고 URL
 [^fn-01]: <https://numpy.org/>
-[^fn-02]: <http://seaborn.pydata.org/>
+[^fn-02]: <https://seaborn.pydata.org/>
 [^fn-03]: <https://datascienceschool.net/01%20python/05.04%20%EC%8B%9C%EB%B3%B8%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%ED%8F%AC%20%EC%8B%9C%EA%B0%81%ED%99%94.html>
 [^fn-04]: <https://datascienceschool.net/01%20python/05.01%20%EC%8B%9C%EA%B0%81%ED%99%94%20%ED%8C%A8%ED%82%A4%EC%A7%80%20%EB%A7%B7%ED%94%8C%EB%A1%AF%EB%A6%AC%EB%B8%8C%20%EC%86%8C%EA%B0%9C.html#:~:text=%EB%A7%B7%ED%94%8C%EB%A1%AF%EB%A6%AC%EB%B8%8C(Matplotlib)%EB%8A%94,%EC%8B%9C%EA%B0%81%ED%99%94%20%EA%B8%B0%EB%8A%A5%EC%9D%84%20%EC%A0%9C%EA%B3%B5%ED%95%9C%EB%8B%A4.>
 [^fn-05]: <https://double-d.tistory.com/14#:~:text=%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%81%B4%EB%A6%AC%EB%8B%9D%EC%9D%80%20%EC%9D%B4%EB%9F%B0%20%EB%8D%B0%EC%9D%B4%ED%84%B0,%ED%95%98%EA%B1%B0%EB%82%98%20%EC%A0%9C%EA%B1%B0%ED%95%98%EB%8A%94%20%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%9D%B4%EB%8B%A4.>
